@@ -242,6 +242,7 @@ XIII. GitHub CLI Integration (utils/github_cli.py)
 ```python
 import subprocess
 import os
+import json
 
 GITHUB_CLI_PATH = os.getenv("GITHUB_CLI_PATH", "gh")
 GITHUB_TOKEN = os.getenv("GITHUB_TOKEN")
@@ -257,21 +258,41 @@ def run_github_cli_command(command: list[str]) -> tuple[str, str, int]:
     )
     return result.stdout, result.stderr, result.returncode
 
-def create_project(name: str, description: str) -> dict:
-    stdout, stderr, returncode = run_github_cli_command(["project", "create", name, "--description", description])
+def create_github_project(name: str, description: str) -> dict:
+    stdout, stderr, returncode = run_github_cli_command(["project", "create", name, "--description", description, "--format", "json"])
     if returncode != 0:
         raise Exception(f"Failed to create project: {stderr}")
-    # Parse stdout to extract project ID and other details
-    # Return project details as a dictionary
+    return json.loads(stdout)
 
-def create_issue(project_id: str, title: str, body: str) -> dict:
-    stdout, stderr, returncode = run_github_cli_command(["issue", "create", "--project", project_id, "--title", title, "--body", body])
+def update_github_project(project_id: str, name: str, description: str) -> dict:
+    stdout, stderr, returncode = run_github_cli_command(["project", "edit", project_id, "--name", name, "--description", description, "--format", "json"])
+    if returncode != 0:
+        raise Exception(f"Failed to update project: {stderr}")
+    return json.loads(stdout)
+
+def delete_github_project(project_id: str) -> None:
+    _, stderr, returncode = run_github_cli_command(["project", "delete", project_id, "--yes"])
+    if returncode != 0:
+        raise Exception(f"Failed to delete project: {stderr}")
+
+def create_github_issue(project_id: str, title: str, body: str) -> dict:
+    stdout, stderr, returncode = run_github_cli_command(["issue", "create", "--project", project_id, "--title", title, "--body", body, "--format", "json"])
     if returncode != 0:
         raise Exception(f"Failed to create issue: {stderr}")
-    # Parse stdout to extract issue ID and other details
-    # Return issue details as a dictionary
+    return json.loads(stdout)
 
-# Implement other GitHub CLI wrapper functions for various operations
+def update_github_issue(issue_id: str, title: str, body: str, status: str) -> dict:
+    stdout, stderr, returncode = run_github_cli_command(["issue", "edit", issue_id, "--title", title, "--body", body, "--status", status, "--format", "json"])
+    if returncode != 0:
+        raise Exception(f"Failed to update issue: {stderr}")
+    return json.loads(stdout)
+
+def delete_github_issue(issue_id: str) -> None:
+    _, stderr, returncode = run_github_cli_command(["issue", "delete", issue_id, "--yes"])
+    if returncode != 0:
+        raise Exception(f"Failed to delete issue: {stderr}")
+
+# Implement other GitHub CLI wrapper functions for various operations as needed
 ```
 
 XIV. Template Management
@@ -310,16 +331,43 @@ B. Template loading and parsing
 ```python
 import toml
 from pathlib import Path
+from sqlalchemy.ext.asyncio import AsyncSession
+from sqlalchemy.future import select
+from ..models.template import Template
+from ..schemas.template import TemplateCreate
+from ..crud.template import create_template
 
-def load_templates(templates_dir: str = "templates") -> dict[str, dict]:
-    templates = {}
+async def load_templates_to_db(db: AsyncSession, templates_dir: str = "templates") -> None:
+    # First, get all existing template names
+    result = await db.execute(select(Template.name))
+    existing_templates = {row[0] for row in result.fetchall()}
+
     for template_file in Path(templates_dir).glob("*.toml"):
         template_name = template_file.stem
-        with open(template_file, "r") as f:
-            templates[template_name] = toml.load(f)
-    return templates
+        if template_name not in existing_templates:
+            with open(template_file, "r") as f:
+                template_content = toml.load(f)
+                template_create = TemplateCreate(name=template_name, content=template_content)
+                await create_template(db, template_create)
 
-# Use this function to load templates into the database or memory
+    await db.commit()
+
+async def get_all_templates(db: AsyncSession, skip: int = 0, limit: int = 100) -> list[Template]:
+    return await get_templates(db, skip=skip, limit=limit)
+
+async def apply_template_to_issue(db: AsyncSession, issue_id: int, template_id: int) -> bool:
+    # Implement the logic to apply a template to an issue
+    # This is a placeholder implementation. You should replace it with actual logic.
+    try:
+        template = await get_template(db, template_id)
+        issue = await get_issue(db, issue_id)  # You need to implement get_issue function
+        if template and issue:
+            # Apply the template to the issue
+            # This is where you would update the issue with the template content
+            return True
+    except Exception as e:
+        print(f"Error applying template to issue: {e}")
+    return False
 ```
 
 XV. Commit Tracking and Issue Updates

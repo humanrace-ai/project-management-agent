@@ -17,6 +17,10 @@ async def get_template(db: AsyncSession, template_id: int):
     result = await db.execute(select(Template).filter(Template.id == template_id))
     return result.scalars().first()
 
+async def get_template_by_name(db: AsyncSession, name: str):
+    result = await db.execute(select(Template).filter(Template.name == name))
+    return result.scalars().first()
+
 async def update_template(db: AsyncSession, template_id: int, template: TemplateUpdate):
     await db.execute(
         update(Template)

@@ -24,19 +24,37 @@ fi
 # Navigate to the project directory (assuming the script is in the root folder)
 cd "$(dirname "$0")"
 
+# Create .env file if it doesn't exist
+if [ ! -f .env ]; then
+    echo "Creating .env file..."
+    cat << EOF > .env
+DATABASE_URL=sqlite+aiosqlite:///./project_manager.db
+GITHUB_CLI_PATH=gh
+GITHUB_TOKEN=your_github_personal_access_token
+EOF
+    echo "Please update the .env file with your GitHub personal access token."
+fi
+
 # Install project dependencies
 echo "Installing project dependencies..."
 poetry install
 
-# Activate the virtual environment
-echo "Activating virtual environment..."
-poetry shell <<EOF
+# Create necessary directories
+mkdir -p src/api/endpoints src/models src/schemas src/crud src/utils templates
 
-# Run the FastAPI application
-echo "Starting the FastAPI application..."
-cd src
-uvicorn main:app --reload
+# Create empty __init__.py files
+touch src/__init__.py src/api/__init__.py src/api/endpoints/__init__.py src/models/__init__.py src/schemas/__init__.py src/crud/__init__.py src/utils/__init__.py
 
-EOF
+# Create template files if they don't exist
+for template in bug_report feature_request task; do
+    if [ ! -f "templates/${template}.toml" ]; then
+        echo "Creating ${template}.toml template..."
+        touch "templates/${template}.toml"
+    fi
+done
+
+# Activate the virtual environment and run the application
+echo "Activating virtual environment and starting the FastAPI application..."
+poetry run uvicorn src.main:app --reload
 
 echo "Installation and setup complete. The FastAPI application should now be running."

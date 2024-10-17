@@ -1,7 +1,7 @@
 from fastapi import FastAPI
+from .database import engine, Base
 from .config import Settings
 from .api.endpoints import projects, issues, templates
-from .database import engine, Base
 
 app = FastAPI(title="AI Hacker League Project Management System")
 

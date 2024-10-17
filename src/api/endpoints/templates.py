@@ -1,13 +1,20 @@
-from fastapi import APIRouter, Depends, HTTPException, BackgroundTasks
+from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.ext.asyncio import AsyncSession
-from typing import List
+from typing import List, Dict, Any
+from pydantic import BaseModel
 
-from ...database import get_db, AsyncSessionLocal
-from ...schemas.template import TemplateCreate, Template, TemplateUpdate
-from ...crud.template import create_template, get_template, update_template, delete_template
-from ...utils.template_loader import load_templates_to_db, get_all_templates, apply_template_to_issue, list_available_templates
+from ...database import get_db
+from ...schemas.template import Template
+from ...crud.template import get_templates
+from ...utils.template_loader import list_available_templates
 
 router = APIRouter()
+
+class TemplateInfo(BaseModel):
+    id: int
+    name: str
+    title: str
+    fields: Dict[str, Dict[str, Any]]
 
 @router.get("/available", response_model=List[str])
 async def list_available_templates_endpoint():
@@ -21,10 +28,26 @@ async def startup_event():
     async with AsyncSessionLocal() as db:
         await load_templates_to_db(db)
 
-@router.get("/", response_model=List[Template])
-async def list_templates(skip: int = 0, limit: int = 100, db: AsyncSession = Depends(get_db)):
-    templates = await get_all_templates(db, skip=skip, limit=limit)
-    return templates
+@router.get("/", response_model=List[TemplateInfo])
+async def list_templates(
+    skip: int = 0, 
+    limit: int = 100, 
+    name: str = Query(None, description="Filter templates by name"),
+    db: AsyncSession = Depends(get_db)
+):
+    templates = await get_templates(db, skip=skip, limit=limit)
+    template_info_list = []
+    for template in templates:
+        if name and name.lower() not in template.name.lower():
+            continue
+        template_info = TemplateInfo(
+            id=template.id,
+            name=template.name,
+            title=template.content.get("title", ""),
+            fields=template.content.get("fields", {})
+        )
+        template_info_list.append(template_info)
+    return template_info_list
 
 @router.post("/", response_model=Template)
 async def create_template_endpoint(template: TemplateCreate, db: AsyncSession = Depends(get_db)):

@@ -36,19 +36,19 @@ authors = ["Your Name <your.email@example.com>"]
 
 [tool.poetry.dependencies]
 python = "^3.8"
-fastapi = "^0.68.0"
-uvicorn = {extras = ["standard"], version = "^0.15.0"}
-sqlalchemy = "^1.4.23"
-aiosqlite = "^0.17.0"
-pydantic = "^1.8.2"
-python-dotenv = "^0.19.0"
+fastapi = "^0.103.0"
+uvicorn = {extras = ["standard"], version = "^0.23.0"}
+sqlalchemy = "^2.0.0"
+aiosqlite = "^0.19.0"
+pydantic = "^2.0.0"
+python-dotenv = "^1.0.0"
 toml = "^0.10.2"
 
 [tool.poetry.dev-dependencies]
-pytest = "^6.2.5"
-black = "^21.7b0"
-mypy = "^0.910"
-isort = "^5.9.3"
+pytest = "^7.0.0"
+black = "^23.0.0"
+mypy = "^1.0.0"
+isort = "^5.0.0"
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]

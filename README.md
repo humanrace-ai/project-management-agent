@@ -66,8 +66,9 @@ poetry add --dev pytest black mypy isort
 
 C. Project structure
 ```
-github-project-manager/
+ai-hacker-league-pms/
 ├── pyproject.toml
+├── poetry.lock
 ├── README.md
 ├── .env
 ├── .gitignore
@@ -100,7 +101,8 @@ github-project-manager/
 │   │   └── deps.py
 │   └── utils/
 │       ├── __init__.py
-│       └── github_cli.py
+│       ├── github_cli.py
+│       └── template_loader.py
 ├── tests/
 │   ├── __init__.py
 │   ├── test_main.py

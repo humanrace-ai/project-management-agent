@@ -4,9 +4,9 @@ from typing import List, Dict, Any
 from pydantic import BaseModel
 
 from ...database import get_db
-from ...schemas.template import Template
-from ...crud.template import get_templates
-from ...utils.template_loader import list_available_templates
+from ...schemas.template import Template, TemplateCreate, TemplateUpdate
+from ...crud.template import get_templates, create_template, get_template, update_template, delete_template
+from ...utils.template_loader import list_available_templates, apply_template_to_issue
 
 router = APIRouter()
 
@@ -23,10 +23,6 @@ async def list_available_templates_endpoint():
     """
     return list_available_templates()
 
-@router.on_event("startup")
-async def startup_event():
-    async with AsyncSessionLocal() as db:
-        await load_templates_to_db(db)
 
 @router.get("/", response_model=List[TemplateInfo])
 async def list_templates(

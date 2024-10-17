@@ -1,5 +1,6 @@
 import toml
 from pathlib import Path
+from sqlalchemy.ext.asyncio import AsyncSession
 
 def load_templates(templates_dir: str = "templates") -> dict[str, dict]:
     templates = {}

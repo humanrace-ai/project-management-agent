@@ -24,6 +24,39 @@ fi
 # Navigate to the project directory (assuming the script is in the root folder)
 cd "$(dirname "$0")"
 
+# Create pyproject.toml if it doesn't exist
+if [ ! -f pyproject.toml ]; then
+    echo "Creating pyproject.toml file..."
+    cat << EOF > pyproject.toml
+[tool.poetry]
+name = "ai-hacker-league-pms"
+version = "0.1.0"
+description = "AI Hacker League Project Management System"
+authors = ["Your Name <your.email@example.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+fastapi = "^0.68.0"
+uvicorn = {extras = ["standard"], version = "^0.15.0"}
+sqlalchemy = "^1.4.23"
+aiosqlite = "^0.17.0"
+pydantic = "^1.8.2"
+python-dotenv = "^0.19.0"
+toml = "^0.10.2"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.5"
+black = "^21.7b0"
+mypy = "^0.910"
+isort = "^5.9.3"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
+EOF
+    echo "pyproject.toml file created. Please update it with your project details."
+fi
+
 # Create .env file if it doesn't exist
 if [ ! -f .env ]; then
     echo "Creating .env file..."

@@ -5,9 +5,16 @@ from typing import List
 from ...database import get_db, AsyncSessionLocal
 from ...schemas.template import TemplateCreate, Template, TemplateUpdate
 from ...crud.template import create_template, get_template, update_template, delete_template
-from ...utils.template_loader import load_templates_to_db, get_all_templates, apply_template_to_issue
+from ...utils.template_loader import load_templates_to_db, get_all_templates, apply_template_to_issue, list_available_templates
 
 router = APIRouter()
+
+@router.get("/available", response_model=List[str])
+async def list_available_templates_endpoint():
+    """
+    List all available template names.
+    """
+    return list_available_templates()
 
 @router.on_event("startup")
 async def startup_event():

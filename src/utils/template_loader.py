@@ -57,3 +57,9 @@ async def apply_template_to_issue(db: AsyncSession, issue_id: int, template_id: 
 async def get_template_by_name(db: AsyncSession, template_name: str) -> Template:
     templates = await get_all_templates(db)
     return next((t for t in templates if t.name == template_name), None)
+
+def list_available_templates(templates_dir: str = "templates") -> List[str]:
+    """
+    List all available template names in the templates directory.
+    """
+    return [template_file.stem for template_file in Path(templates_dir).glob("*.toml")]

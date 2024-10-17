@@ -6,11 +6,18 @@ from typing import List
 from ..models.template import Template
 from ..schemas.template import TemplateCreate, TemplateUpdate
 
+from sqlalchemy.exc import IntegrityError
+
 async def create_template(db: AsyncSession, template: TemplateCreate):
     db_template = Template(**template.dict())
     db.add(db_template)
-    await db.commit()
-    await db.refresh(db_template)
+    try:
+        await db.flush()
+    except IntegrityError:
+        await db.rollback()
+        # Template already exists, you can choose to update it here if needed
+        # or just skip it
+        return None
     return db_template
 
 async def get_template(db: AsyncSession, template_id: int):

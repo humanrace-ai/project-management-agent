@@ -28,6 +28,17 @@ Our AI-powered project management system offers a wide range of templates and cu
 
 For a detailed overview of all available templates and instructions on how to use and customize them, please refer to our [Templates README](templates/README.md).
 
+## Documentation
+
+For comprehensive documentation on using, developing, and customizing the AI Hacker League Project Management System, please refer to the [docs](docs) directory. It contains detailed information on:
+
+- User Guide
+- Development Overview
+- System Architecture
+- API Reference
+- Libraries and Dependencies
+- Customization and Advanced Uses
+
 ## Features
 
 ### 🤖 AI-Powered Project Creation and Management

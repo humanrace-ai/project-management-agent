@@ -1,0 +1,25 @@
+title = "Feature Request: {feature_title}"
+body = """
+## Feature Description
+{description}
+
+## Use Case
+{use_case}
+
+## Proposed Solution
+{proposed_solution}
+
+## Alternatives Considered
+{alternatives}
+
+## Additional Context
+{additional_context}
+"""
+
+[fields]
+feature_title = { type = "string", required = true }
+description = { type = "string", required = true }
+use_case = { type = "string", required = true }
+proposed_solution = { type = "string", required = true }
+alternatives = { type = "string", required = false }
+additional_context = { type = "string", required = false }

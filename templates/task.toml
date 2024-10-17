@@ -1,0 +1,25 @@
+title = "{task_title}"
+body = """
+## Task Description
+{description}
+
+## Acceptance Criteria
+{acceptance_criteria}
+
+## Dependencies
+{dependencies}
+
+## Estimated Effort
+{effort}
+
+## Additional Notes
+{notes}
+"""
+
+[fields]
+task_title = { type = "string", required = true }
+description = { type = "string", required = true }
+acceptance_criteria = { type = "string", required = true }
+dependencies = { type = "string", required = false }
+effort = { type = "string", required = true }
+notes = { type = "string", required = false }

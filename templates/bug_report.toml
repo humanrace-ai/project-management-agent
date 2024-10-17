@@ -1,0 +1,25 @@
+title = "Bug Report: {bug_title}"
+body = """
+## Description
+{description}
+
+## Steps to Reproduce
+{steps}
+
+## Expected Behavior
+{expected}
+
+## Actual Behavior
+{actual}
+
+## Additional Information
+{additional_info}
+"""
+
+[fields]
+bug_title = { type = "string", required = true }
+description = { type = "string", required = true }
+steps = { type = "string", required = true }
+expected = { type = "string", required = true }
+actual = { type = "string", required = true }
+additional_info = { type = "string", required = false }

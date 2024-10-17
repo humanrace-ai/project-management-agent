@@ -1,0 +1,43 @@
+title = "Epic: {epic_title}"
+body = """
+## Epic Description
+{epic_description}
+
+## Business Value
+{business_value}
+
+## Acceptance Criteria
+{acceptance_criteria}
+
+## User Stories
+{user_stories}
+
+## Dependencies
+{dependencies}
+
+## Estimated Timeline
+Start Date: {start_date}
+End Date: {end_date}
+
+## Epic Owner
+{epic_owner}
+
+## Stakeholders
+{stakeholders}
+
+## Notes
+{notes}
+"""
+
+[fields]
+epic_title = { type = "string", required = true }
+epic_description = { type = "string", required = true }
+business_value = { type = "string", required = true }
+acceptance_criteria = { type = "string", required = true }
+user_stories = { type = "string", required = false }
+dependencies = { type = "string", required = false }
+start_date = { type = "date", required = false }
+end_date = { type = "date", required = false }
+epic_owner = { type = "string", required = true }
+stakeholders = { type = "string", required = false }
+notes = { type = "string", required = false }

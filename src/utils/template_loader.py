@@ -25,10 +25,9 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from ..models.template import Template
 from ..schemas.template import TemplateCreate
 from ..crud.template import create_template, get_templates, get_template
-from ..crud.issue import get_issue
+from ..crud.issue import get_issue, update_issue
 
 async def load_templates_to_db(db: AsyncSession, templates_dir: str = "templates") -> None:
-    templates = {}
     for template_file in Path(templates_dir).glob("*.toml"):
         template_name = template_file.stem
         with open(template_file, "r") as f:
@@ -45,8 +44,16 @@ async def apply_template_to_issue(db: AsyncSession, issue_id: int, template_id: 
         issue = await get_issue(db, issue_id)
         if template and issue:
             # Apply the template to the issue
-            # This is where you would update the issue with the template content
+            updated_issue = issue.copy(update={
+                "title": template.content["title"].format(**issue.dict()),
+                "description": template.content["body"].format(**issue.dict())
+            })
+            await update_issue(db, issue_id, updated_issue)
             return True
     except Exception as e:
         print(f"Error applying template to issue: {e}")
     return False
+
+async def get_template_by_name(db: AsyncSession, template_name: str) -> Template:
+    templates = await get_all_templates(db)
+    return next((t for t in templates if t.name == template_name), None)

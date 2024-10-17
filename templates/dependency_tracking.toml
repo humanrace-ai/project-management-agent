@@ -1,0 +1,46 @@
+title = "Dependency: {dependency_name}"
+body = """
+## Dependency Information
+Dependency Name: {dependency_name}
+Type: {dependency_type}
+
+## Description
+{description}
+
+## Dependent Item
+{dependent_item}
+
+## Dependency Source
+{dependency_source}
+
+## Required By Date
+{required_by_date}
+
+## Status
+{status}
+
+## Impact if Not Met
+{impact}
+
+## Mitigation Plan
+{mitigation_plan}
+
+## Owner
+{owner}
+
+## Notes
+{notes}
+"""
+
+[fields]
+dependency_name = { type = "string", required = true }
+dependency_type = { type = "string", required = true }
+description = { type = "string", required = true }
+dependent_item = { type = "string", required = true }
+dependency_source = { type = "string", required = true }
+required_by_date = { type = "date", required = true }
+status = { type = "string", required = true }
+impact = { type = "string", required = true }
+mitigation_plan = { type = "string", required = true }
+owner = { type = "string", required = true }
+notes = { type = "string", required = false }

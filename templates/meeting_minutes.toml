@@ -1,0 +1,47 @@
+title = "Meeting Minutes: {meeting_title}"
+body = """
+## Meeting Information
+Date: {meeting_date}
+Time: {meeting_time}
+Location: {meeting_location}
+
+## Attendees
+{attendees}
+
+## Agenda
+{agenda}
+
+## Discussion Points
+{discussion_points}
+
+## Action Items
+{action_items}
+
+## Decisions Made
+{decisions_made}
+
+## Next Steps
+{next_steps}
+
+## Next Meeting
+Date: {next_meeting_date}
+Time: {next_meeting_time}
+
+## Notes
+{notes}
+"""
+
+[fields]
+meeting_title = { type = "string", required = true }
+meeting_date = { type = "date", required = true }
+meeting_time = { type = "string", required = true }
+meeting_location = { type = "string", required = true }
+attendees = { type = "string", required = true }
+agenda = { type = "string", required = true }
+discussion_points = { type = "string", required = true }
+action_items = { type = "string", required = true }
+decisions_made = { type = "string", required = true }
+next_steps = { type = "string", required = true }
+next_meeting_date = { type = "date", required = false }
+next_meeting_time = { type = "string", required = false }
+notes = { type = "string", required = false }

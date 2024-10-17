@@ -1,0 +1,55 @@
+title = "Project Charter: {project_name}"
+body = """
+## Project Overview
+{project_overview}
+
+## Project Objectives
+{project_objectives}
+
+## Project Scope
+{project_scope}
+
+## Key Stakeholders
+{key_stakeholders}
+
+## Project Timeline
+Start Date: {start_date}
+End Date: {end_date}
+
+## Budget
+{budget}
+
+## Key Deliverables
+{key_deliverables}
+
+## Success Criteria
+{success_criteria}
+
+## Constraints and Assumptions
+{constraints_and_assumptions}
+
+## Risks and Mitigation Strategies
+{risks_and_mitigation}
+
+## Approval
+Project Sponsor: {sponsor_name}
+Project Manager: {manager_name}
+Date: {approval_date}
+"""
+
+[fields]
+project_name = { type = "string", required = true }
+project_overview = { type = "string", required = true }
+project_objectives = { type = "string", required = true }
+project_scope = { type = "string", required = true }
+key_stakeholders = { type = "string", required = true }
+start_date = { type = "date", required = true }
+end_date = { type = "date", required = true }
+budget = { type = "string", required = true }
+key_deliverables = { type = "string", required = true }
+success_criteria = { type = "string", required = true }
+constraints_and_assumptions = { type = "string", required = true }
+risks_and_mitigation = { type = "string", required = true }
+sponsor_name = { type = "string", required = true }
+manager_name = { type = "string", required = true }
+approval_date = { type = "date", required = true }

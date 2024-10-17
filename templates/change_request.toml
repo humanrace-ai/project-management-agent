@@ -1,0 +1,61 @@
+title = "Change Request: {change_title}"
+body = """
+## Change Request Information
+Change ID: {change_id}
+Requester: {requester}
+Date Submitted: {date_submitted}
+
+## Change Description
+{change_description}
+
+## Justification
+{justification}
+
+## Impact Assessment
+Schedule Impact: {schedule_impact}
+Budget Impact: {budget_impact}
+Scope Impact: {scope_impact}
+Quality Impact: {quality_impact}
+
+## Risk Assessment
+{risk_assessment}
+
+## Alternatives Considered
+{alternatives}
+
+## Implementation Plan
+{implementation_plan}
+
+## Approvals Required
+{approvals_required}
+
+## Decision
+Status: {status}
+Decision Date: {decision_date}
+Decision Maker: {decision_maker}
+Comments: {decision_comments}
+
+## Notes
+{notes}
+"""
+
+[fields]
+change_title = { type = "string", required = true }
+change_id = { type = "string", required = true }
+requester = { type = "string", required = true }
+date_submitted = { type = "date", required = true }
+change_description = { type = "string", required = true }
+justification = { type = "string", required = true }
+schedule_impact = { type = "string", required = true }
+budget_impact = { type = "string", required = true }
+scope_impact = { type = "string", required = true }
+quality_impact = { type = "string", required = true }
+risk_assessment = { type = "string", required = true }
+alternatives = { type = "string", required = false }
+implementation_plan = { type = "string", required = true }
+approvals_required = { type = "string", required = true }
+status = { type = "string", required = true }
+decision_date = { type = "date", required = false }
+decision_maker = { type = "string", required = false }
+decision_comments = { type = "string", required = false }
+notes = { type = "string", required = false }

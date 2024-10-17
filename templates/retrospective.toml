@@ -1,0 +1,46 @@
+title = "Sprint Retrospective: Sprint {sprint_number}"
+body = """
+## Sprint Information
+Sprint Number: {sprint_number}
+Start Date: {start_date}
+End Date: {end_date}
+
+## What Went Well
+{went_well}
+
+## What Could Be Improved
+{needs_improvement}
+
+## Action Items
+{action_items}
+
+## Team Mood
+{team_mood}
+
+## Sprint Velocity
+Planned: {planned_velocity}
+Actual: {actual_velocity}
+
+## Key Metrics
+{key_metrics}
+
+## Lessons Learned
+{lessons_learned}
+
+## Notes
+{notes}
+"""
+
+[fields]
+sprint_number = { type = "integer", required = true }
+start_date = { type = "date", required = true }
+end_date = { type = "date", required = true }
+went_well = { type = "string", required = true }
+needs_improvement = { type = "string", required = true }
+action_items = { type = "string", required = true }
+team_mood = { type = "string", required = true }
+planned_velocity = { type = "integer", required = true }
+actual_velocity = { type = "integer", required = true }
+key_metrics = { type = "string", required = false }
+lessons_learned = { type = "string", required = true }
+notes = { type = "string", required = false }

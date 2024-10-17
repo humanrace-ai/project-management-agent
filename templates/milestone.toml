@@ -1,0 +1,46 @@
+title = "Milestone: {milestone_name}"
+body = """
+## Milestone Information
+Milestone Name: {milestone_name}
+Due Date: {due_date}
+
+## Description
+{description}
+
+## Deliverables
+{deliverables}
+
+## Success Criteria
+{success_criteria}
+
+## Dependencies
+{dependencies}
+
+## Assigned Team/Resources
+{assigned_resources}
+
+## Status
+{status}
+
+## Progress
+{progress}
+
+## Risks/Issues
+{risks_issues}
+
+## Notes
+{notes}
+"""
+
+[fields]
+milestone_name = { type = "string", required = true }
+due_date = { type = "date", required = true }
+description = { type = "string", required = true }
+deliverables = { type = "string", required = true }
+success_criteria = { type = "string", required = true }
+dependencies = { type = "string", required = false }
+assigned_resources = { type = "string", required = true }
+status = { type = "string", required = true }
+progress = { type = "string", required = true }
+risks_issues = { type = "string", required = false }
+notes = { type = "string", required = false }

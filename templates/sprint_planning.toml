@@ -1,0 +1,43 @@
+title = "Sprint Planning: Sprint {sprint_number}"
+body = """
+## Sprint Goal
+{sprint_goal}
+
+## Sprint Duration
+Start Date: {start_date}
+End Date: {end_date}
+
+## Team Capacity
+{team_capacity}
+
+## Sprint Backlog
+{sprint_backlog}
+
+## Sprint Velocity (Story Points)
+{sprint_velocity}
+
+## Dependencies and Blockers
+{dependencies_and_blockers}
+
+## Risk Assessment
+{risk_assessment}
+
+## Definition of Done
+{definition_of_done}
+
+## Sprint Planning Notes
+{sprint_planning_notes}
+"""
+
+[fields]
+sprint_number = { type = "integer", required = true }
+sprint_goal = { type = "string", required = true }
+start_date = { type = "date", required = true }
+end_date = { type = "date", required = true }
+team_capacity = { type = "string", required = true }
+sprint_backlog = { type = "string", required = true }
+sprint_velocity = { type = "integer", required = true }
+dependencies_and_blockers = { type = "string", required = false }
+risk_assessment = { type = "string", required = false }
+definition_of_done = { type = "string", required = true }
+sprint_planning_notes = { type = "string", required = false }

@@ -1,0 +1,56 @@
+title = "Quality Assurance: {qa_item}"
+body = """
+## QA Item Information
+Item Name: {qa_item}
+Type: {qa_type}
+
+## Description
+{description}
+
+## Quality Criteria
+{quality_criteria}
+
+## Testing Methodology
+{testing_methodology}
+
+## Responsible Team/Individual
+{responsible_party}
+
+## Timeline
+Start Date: {start_date}
+End Date: {end_date}
+
+## Status
+{status}
+
+## Results
+{results}
+
+## Issues Found
+{issues_found}
+
+## Corrective Actions
+{corrective_actions}
+
+## Sign-off
+{sign_off}
+
+## Notes
+{notes}
+"""
+
+[fields]
+qa_item = { type = "string", required = true }
+qa_type = { type = "string", required = true }
+description = { type = "string", required = true }
+quality_criteria = { type = "string", required = true }
+testing_methodology = { type = "string", required = true }
+responsible_party = { type = "string", required = true }
+start_date = { type = "date", required = true }
+end_date = { type = "date", required = true }
+status = { type = "string", required = true }
+results = { type = "string", required = false }
+issues_found = { type = "string", required = false }
+corrective_actions = { type = "string", required = false }
+sign_off = { type = "string", required = false }
+notes = { type = "string", required = false }

@@ -1,0 +1,48 @@
+title = "Stakeholder Analysis: {stakeholder_name}"
+body = """
+## Stakeholder Information
+Name: {stakeholder_name}
+Role/Position: {role_position}
+Organization: {organization}
+
+## Interest Level
+{interest_level}
+
+## Influence Level
+{influence_level}
+
+## Stakeholder Classification
+{stakeholder_classification}
+
+## Key Concerns/Interests
+{key_concerns}
+
+## Current Engagement Level
+{current_engagement}
+
+## Desired Engagement Level
+{desired_engagement}
+
+## Communication Strategy
+{communication_strategy}
+
+## Action Items
+{action_items}
+
+## Notes
+{notes}
+"""
+
+[fields]
+stakeholder_name = { type = "string", required = true }
+role_position = { type = "string", required = true }
+organization = { type = "string", required = true }
+interest_level = { type = "string", required = true }
+influence_level = { type = "string", required = true }
+stakeholder_classification = { type = "string", required = true }
+key_concerns = { type = "string", required = true }
+current_engagement = { type = "string", required = true }
+desired_engagement = { type = "string", required = true }
+communication_strategy = { type = "string", required = true }
+action_items = { type = "string", required = false }
+notes = { type = "string", required = false }

@@ -1,0 +1,35 @@
+title = "User Story: {story_title}"
+body = """
+## User Story
+As a {user_type}, I want {desired_action} so that {benefit}.
+
+## Acceptance Criteria
+{acceptance_criteria}
+
+## Story Points
+{story_points}
+
+## Priority
+{priority}
+
+## Dependencies
+{dependencies}
+
+## Notes
+{notes}
+
+## Tasks
+{tasks}
+"""
+
+[fields]
+story_title = { type = "string", required = true }
+user_type = { type = "string", required = true }
+desired_action = { type = "string", required = true }
+benefit = { type = "string", required = true }
+acceptance_criteria = { type = "string", required = true }
+story_points = { type = "integer", required = true }
+priority = { type = "string", required = true }
+dependencies = { type = "string", required = false }
+notes = { type = "string", required = false }
+tasks = { type = "string", required = false }

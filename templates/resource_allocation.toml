@@ -1,0 +1,38 @@
+title = "Resource Allocation: {resource_name}"
+body = """
+## Resource Information
+Name: {resource_name}
+Role: {resource_role}
+
+## Current Project Assignments
+{current_assignments}
+
+## Availability
+Start Date: {start_date}
+End Date: {end_date}
+Capacity: {capacity}
+
+## Skills/Expertise
+{skills_expertise}
+
+## Allocation Details
+{allocation_details}
+
+## Conflicts/Overlaps
+{conflicts_overlaps}
+
+## Notes
+{notes}
+"""
+
+[fields]
+resource_name = { type = "string", required = true }
+resource_role = { type = "string", required = true }
+current_assignments = { type = "string", required = true }
+start_date = { type = "date", required = true }
+end_date = { type = "date", required = true }
+capacity = { type = "string", required = true }
+skills_expertise = { type = "string", required = true }
+allocation_details = { type = "string", required = true }
+conflicts_overlaps = { type = "string", required = false }
+notes = { type = "string", required = false }

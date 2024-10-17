@@ -1,0 +1,50 @@
+title = "Project Status Report: {project_name}"
+body = """
+## Project Information
+Project Name: {project_name}
+Report Date: {report_date}
+
+## Overall Status
+{overall_status}
+
+## Key Accomplishments
+{key_accomplishments}
+
+## Upcoming Milestones
+{upcoming_milestones}
+
+## Issues/Risks
+{issues_risks}
+
+## Budget Status
+Budget: {budget}
+Spent: {spent}
+Remaining: {remaining}
+
+## Schedule Status
+{schedule_status}
+
+## Key Metrics
+{key_metrics}
+
+## Action Items
+{action_items}
+
+## Notes
+{notes}
+"""
+
+[fields]
+project_name = { type = "string", required = true }
+report_date = { type = "date", required = true }
+overall_status = { type = "string", required = true }
+key_accomplishments = { type = "string", required = true }
+upcoming_milestones = { type = "string", required = true }
+issues_risks = { type = "string", required = true }
+budget = { type = "float", required = true }
+spent = { type = "float", required = true }
+remaining = { type = "float", required = true }
+schedule_status = { type = "string", required = true }
+key_metrics = { type = "string", required = false }
+action_items = { type = "string", required = true }
+notes = { type = "string", required = false }

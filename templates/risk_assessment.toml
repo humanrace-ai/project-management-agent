@@ -1,0 +1,49 @@
+title = "Risk Assessment: {risk_title}"
+body = """
+## Risk Description
+{risk_description}
+
+## Risk Category
+{risk_category}
+
+## Probability
+{probability}
+
+## Impact
+{impact}
+
+## Risk Score (Probability x Impact)
+{risk_score}
+
+## Mitigation Strategy
+{mitigation_strategy}
+
+## Contingency Plan
+{contingency_plan}
+
+## Risk Owner
+{risk_owner}
+
+## Status
+{status}
+
+## Review Date
+{review_date}
+
+## Notes
+{notes}
+"""
+
+[fields]
+risk_title = { type = "string", required = true }
+risk_description = { type = "string", required = true }
+risk_category = { type = "string", required = true }
+probability = { type = "integer", required = true }
+impact = { type = "integer", required = true }
+risk_score = { type = "integer", required = true }
+mitigation_strategy = { type = "string", required = true }
+contingency_plan = { type = "string", required = true }
+risk_owner = { type = "string", required = true }
+status = { type = "string", required = true }
+review_date = { type = "date", required = true }
+notes = { type = "string", required = false }

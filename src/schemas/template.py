@@ -14,6 +14,7 @@ class TemplateUpdate(BaseModel):
     content: Optional[Dict[str, Any]] = None
 
 class Template(TemplateBase):
+    updated_at: Optional[datetime] = None
     id: int
     created_at: datetime
     updated_at: datetime

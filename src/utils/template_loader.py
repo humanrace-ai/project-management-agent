@@ -20,6 +20,7 @@ async def apply_template_to_issue(db: AsyncSession, issue_id: int, template_id: 
     # 5. Return True if successful, False otherwise
     pass
 import toml
+from typing import List
 from pathlib import Path
 from sqlalchemy.ext.asyncio import AsyncSession
 from ..models.template import Template

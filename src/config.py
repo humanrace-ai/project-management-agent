@@ -4,6 +4,10 @@ from dotenv import load_dotenv
 load_dotenv()
 
 class Settings:
+    """
+    Configuration settings for the AI Hacker League Project Management System.
+    Loads environment variables and provides default values.
+    """
     PROJECT_NAME: str = "AI Hacker League Project Management System"
     PROJECT_VERSION: str = "1.0.0"
     

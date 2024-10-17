@@ -1,4 +1,5 @@
 from fastapi import FastAPI
+from .config import Settings
 from .api.endpoints import projects, issues, templates
 from .database import engine, Base
 

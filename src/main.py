@@ -2,6 +2,8 @@ from fastapi import FastAPI
 from .database import engine, Base
 from .config import Settings
 from .api.endpoints import projects, issues, templates
+from .utils.template_loader import load_templates_to_db
+from sqlalchemy.ext.asyncio import AsyncSession
 
 app = FastAPI(title="AI Hacker League Project Management System")
 
@@ -9,6 +11,9 @@ app = FastAPI(title="AI Hacker League Project Management System")
 async def startup():
     async with engine.begin() as conn:
         await conn.run_sync(Base.metadata.create_all)
+    
+    async with AsyncSession(engine) as db:
+        await load_templates_to_db(db)
 
 app.include_router(projects.router, prefix="/projects", tags=["projects"])
 app.include_router(issues.router, prefix="/issues", tags=["issues"])
